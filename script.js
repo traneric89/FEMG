@@ -2,6 +2,7 @@
 const submitButton = document.getElementById("submit");
 const playerName = document.getElementById("player");
 const form = document.getElementById("form");
+const tableBody = document.getElementById("tableBody");
 
 let currentPlayer = "";
 let leaderboardArray = [];
@@ -26,4 +27,22 @@ const getTime = (time) => {
   );
   console.log("sorted array:");
   console.table(sortedLeaderboard);
+
+  tableBody.innerHTML = "";
+
+  sortedLeaderboard.forEach((player) => {
+    console.log(player.time);
+    console.log(player.name);
+
+    const tableRow = document.createElement("tr");
+    tableBody.appendChild(tableRow);
+
+    const tableDataName = document.createElement("td");
+    tableDataName.innerHTML = player.name;
+    tableRow.appendChild(tableDataName);
+
+    const tableDataTime = document.createElement("td");
+    tableDataTime.innerHTML = `${player.time}s`;
+    tableRow.appendChild(tableDataTime);
+  });
 };
