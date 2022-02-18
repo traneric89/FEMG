@@ -46,3 +46,10 @@ const getTime = (time) => {
     tableRow.appendChild(tableDataTime);
   });
 };
+
+//Ultrasonic sensor data
+let socket = io("http://localhost:3000");
+
+socket.on("data", (data) => {
+  console.log(data);
+});

@@ -1,20 +1,39 @@
-// const bluetooth = require("node-bluetooth");
-
+const http = require("http");
 const express = require("express");
-
-// // create bluetooth device instance
-// const device = new bluetooth.DeviceINQ();
-
-// device.listPairedDevices(console.log);
-
-const exppress = require("express");
-
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("<h1>Hello World</>");
+const server = http.Server(app);
+const io = require("socket.io")(server);
+
+server.listen(3000);
+
+//serve static files from root directory (script.js)
+app.use(express.static(__dirname));
+
+// const fs = require("fs");
+// const index = fs.readFileSync("index.html");
+const SerialPort = require("serialport");
+
+const parsers = SerialPort.parsers;
+const parser = new parsers.Readline({
+  delimiter: "\r\n",
 });
 
-const PORT = process.env.PORT || 5000;
+const port = new SerialPort("COM3", {
+  baudRate: 9600,
+  dataBits: 8,
+  parity: "none",
+  stopBits: 1,
+  flowControl: false,
+});
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+port.pipe(parser);
+
+io.on("connection", (socket) => {
+  console.log("socket connected");
+});
+
+parser.on("data", (data) => {
+  console.log(data);
+  io.emit("data", data);
+});
