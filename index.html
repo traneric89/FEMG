@@ -13,10 +13,6 @@
   </head>
   <body>
     <header><img src="/images/logo.png" alt="logo" /></header>
-    <button onclick="getTime(1)">send lap time 1 test</button>
-    <button onclick="getTime(5)">send lap time 5 test</button>
-    <button onclick="getTime(10)">send lap time 10 test</button>
-    <button onclick="getTime(15)">send lap time 15 test</button>
     <div class="add-form">
       <form action="" id="form">
         <input type="text" id="player" placeholder="Name" autocomplete="off" />
@@ -32,44 +28,15 @@
       </ul>
       <div class="container">
         <table class="table table-sortable">
-          <col style="width: 25%" />
-          <col style="width: 25%" />
-          <col style="width: 25%" />
-          <col style="width: 25%" />
+          <col style="width: 50%" />
+          <col style="width: 50%" />
           <thead>
             <tr>
               <th>Player</th>
               <th>Lap Time</th>
-              <th>Average Speed</th>
-              <th>Top Speed</th>
             </tr>
           </thead>
-          <tbody id="tableBody">
-            <tr>
-              <td>Eric</td>
-              <td>2:32</td>
-              <td>2.3 km/h</td>
-              <td>3.7 km/h</td>
-            </tr>
-            <tr>
-              <td>Daniyal</td>
-              <td>2:52</td>
-              <td>1.9 km/h</td>
-              <td>3.2 km/h</td>
-            </tr>
-            <tr>
-              <td>Tanishq</td>
-              <td>3:02</td>
-              <td>1.8 km/h</td>
-              <td>2.9 km/h</td>
-            </tr>
-            <tr>
-              <td>Azeem</td>
-              <td>3:14</td>
-              <td>1.5 km/h</td>
-              <td>2.7 km/h</td>
-            </tr>
-          </tbody>
+          <tbody id="tableBody"></tbody>
         </table>
       </div>
     </div>
